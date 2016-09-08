@@ -5,19 +5,13 @@ package multithread_related;
  * @date 2016年7月29日 下午3:13:22
  * @version 1.0
 */
-public class work {
+public class Work {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//---------ListNode
-//		ListNode x=new ListNode(0);
-//		int[] nums=new int[10];
-//		int y=nums[0];
-//		if( nums.length==1 ){
-//			
-//		}
+
 //		int repeat;
 		//---------Thread1
 //		Thread1 th1=new Thread1("A");
@@ -66,19 +60,19 @@ public class work {
 		 * 主线程先于子线程结束。无Join方法。
 		 */
 //		//-----------Thread5 有Join调用
-//		System.out.println(Thread.currentThread().getName()+"主线程开始！");
-//		Thread5 th1=new Thread5("L");
-//		Thread5 th2=new Thread5("M");
-//		th1.start();
-//		th2.start();
-//		try {
-//			//并发的执行两个线程
-//			th1.join();
-//			th2.join();
-//		} catch (Exception e) {
-//			e.printStackTrace();		
-//		}
-//		System.out.println(Thread.currentThread().getName()+"主线程结束！");
+		System.out.println(Thread.currentThread().getName()+"主线程开始！");
+		Thread5 th1=new Thread5("L");
+		Thread5 th2=new Thread5("M");
+		th1.start();
+		th2.start();
+		try {
+			//并发的执行两个线程
+			th1.join();
+			th2.join();
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		System.out.println(Thread.currentThread().getName()+"主线程结束！");
 		/**
 		 * 主线程等待子线程。有Join方法。
 		 */
@@ -123,11 +117,11 @@ public class work {
 		 * 当main中tp2与tp3之间有sleep时，tp3的启动被延迟，这时已经完成了tp1的拿取和释放，b将不会被tp3抢占。
 		 */
 		//--------MoneyThread
-        Bank bank = new Bank();
-        Thread t1 = new MoneyThread("A",bank);// 从银行取钱
-        Thread t2 = new MoneyThread("B",bank);// 从取款机取钱
-        t1.start();
-        t2.start();
+//        Bank bank = new Bank();
+//        Thread t1 = new MoneyThread("A",bank);// 从银行取钱
+//        Thread t2 = new MoneyThread("B",bank);// 从取款机取钱
+//        t1.start();
+//        t2.start();
         /**
          * syncronized作用于方法
          * t1、t2谁取到80顺序不定，但一定不会出现同时取到80

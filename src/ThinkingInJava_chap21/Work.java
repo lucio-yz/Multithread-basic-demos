@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  * @date 2016年8月8日 下午9:16:58
  * @version 1.0
 */
-public class work {
+public class Work {
 
 	/**
 	 * @param args
