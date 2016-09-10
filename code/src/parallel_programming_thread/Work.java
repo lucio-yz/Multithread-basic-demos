@@ -127,8 +127,8 @@ public class Work {
 		for( int i=0;i<N;i++ ){
 			array[i]=(int)(Math.random()*N);
 		}
-		//---------------统计时间开始
-		long startTime = System.currentTimeMillis();//获取开始时间
+		//统计时间开始
+		long startTime=System.currentTimeMillis();
 		//划分数据集
 		int[] dataRange=new int[THREADS+1];
 		for( int i=0;i<=THREADS;i++ ){
@@ -138,6 +138,7 @@ public class Work {
 		}
 		//callable接口
 		Thread6[] workers=new Thread6[THREADS];
+		Thread[] workersTh=new Thread[THREADS];
 		System.out.println(THREADS+"个线程被产生");
 		//future接口列表
 		List<FutureTask<Integer>> taskLists=new ArrayList<FutureTask<Integer>>();
@@ -150,6 +151,7 @@ public class Work {
 			//线程启动
 			Thread th=new Thread(task);
 			th.start();
+			workersTh[i]=th;
 		}
 		Integer max=-1;
 		for(FutureTask<Integer> task:taskLists){
@@ -163,22 +165,22 @@ public class Work {
 				max=temp;
 		}
 		System.out.println("最大值是"+max);
-		long endTime = System.currentTimeMillis();//获取结束时间
-		System.out.println("程序运行时间：" + (endTime - startTime) + "ms");//输出程序运行时间
-		//-------------------统计时间结束
-		//---------------统计时间开始
-//		long startTime2 = System.currentTimeMillis();//获取开始时间
-//		Integer temp=array[0];
-//		for( int i=0;i<N;i++ ){
-//			if( temp<array[i] )
-//				temp=array[i];
-//		}
-//		System.out.println("最大值是"+temp);
-//		long endTime2 = System.currentTimeMillis();//获取结束时间
-//		System.out.println("程序运行时间：" + (endTime2 - startTime2) + "ms");//输出程序运行时间
-		//-------------------统计时间结束
+		//统计时间结束
+		long endTime=System.currentTimeMillis();
+		System.out.println("程序耗费时间="+(endTime-startTime)+"ms");
+		//暴力找最大值
+		//统计时间开始
+		long startTime2=System.currentTimeMillis();
+		int max2=array[0];
+		for( int i=0;i<N;i++ ){
+			max2=(max2>array[i])?max:array[i];
+		}
+		System.out.println("最大值是"+max2);
+		//统计时间结束
+		long endTime2=System.currentTimeMillis();
+		System.out.println("程序耗费时间="+(endTime2-startTime2)+"ms");
 		/*
-		 * 带返回值的线程，Callable和Future，求最大值。
+		 * 带返回值的线程，Callable和Future，求最大值，多线程方法和暴力方法对比
 		 */
 	}
 
