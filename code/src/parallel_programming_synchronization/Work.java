@@ -50,9 +50,6 @@ public class Work {
 		/*
 		 * 同步锁之同步块，对一个类的两个属性同时进行+1操作，并比较大小。
 		 */
-		/*
-		 * 
-		 */
 		//-------------WriteThread && ReadThread && ReenTest
 //		//计时开始
 //		long startTime=System.currentTimeMillis();
@@ -134,6 +131,9 @@ public class Work {
 			e.printStackTrace();
 		}
 		System.out.println("Counter.get()="+counter.get());
+		/*
+		 * 原子类。对一个变量进行原子更新。
+		 */
 	}
 
 }

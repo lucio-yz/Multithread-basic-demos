@@ -60,19 +60,19 @@ public class Work {
 		 * 主线程先于子线程结束。无Join方法。
 		 */
 //		//-----------Thread5 有Join调用
-		System.out.println(Thread.currentThread().getName()+"主线程开始！");
-		Thread5 th1=new Thread5("L");
-		Thread5 th2=new Thread5("M");
-		th1.start();
-		th2.start();
-		try {
-			//并发的执行两个线程
-			th1.join();
-			th2.join();
-		} catch (Exception e) {
-			e.printStackTrace();		
-		}
-		System.out.println(Thread.currentThread().getName()+"主线程结束！");
+//		System.out.println(Thread.currentThread().getName()+"主线程开始！");
+//		Thread5 th1=new Thread5("L");
+//		Thread5 th2=new Thread5("M");
+//		th1.start();
+//		th2.start();
+//		try {
+//			//并发的执行两个线程
+//			th1.join();
+//			th2.join();
+//		} catch (Exception e) {
+//			e.printStackTrace();		
+//		}
+//		System.out.println(Thread.currentThread().getName()+"主线程结束！");
 		/**
 		 * 主线程等待子线程。有Join方法。
 		 */
@@ -97,20 +97,21 @@ public class Work {
 		 * th1的优先级最高，即使th1被yield，由于优先级高，所以马上继续运行。
 		 */
 		//---------ThreadPrinter
-//		Object a=new Object();
-//		Object b=new Object();
-//		Object c=new Object();
-//		ThreadPrinter tp1=new ThreadPrinter("A", c, a);
-//		ThreadPrinter tp2=new ThreadPrinter("B", a, b);
-//		ThreadPrinter tp3=new ThreadPrinter("C", b, c);
-//		try {
-//			new Thread(tp1).start();
-//			new Thread(tp2).start();
-//			Thread.sleep(100);//main进程阻塞100ms，tp3的阻塞推迟，目的是为了防止tp3先拿到b，造成ACB的结果
-//			new Thread(tp3).start();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		Object a=new Object();
+		Object b=new Object();
+		Object c=new Object();
+		ThreadPrinter tp1=new ThreadPrinter("A", c, a);
+		ThreadPrinter tp2=new ThreadPrinter("B", a, b);
+		ThreadPrinter tp3=new ThreadPrinter("C", b, c);
+		try {
+			new Thread(tp1).start();
+			Thread.sleep(100);//防止死锁
+			new Thread(tp2).start();
+			Thread.sleep(100);//main进程阻塞100ms，tp3的阻塞推迟，目的是为了防止tp3先拿到b，造成ACB的结果
+			new Thread(tp3).start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		/**
 		 * 三线程依次打印ABC多次。使用到了notify、wait、syncronized
 		 * 当main中没有sleep的时候，tp2阻塞在了a,tp3拿到b、阻塞在c，那么tp1释放a、c时，tp3将先运行。

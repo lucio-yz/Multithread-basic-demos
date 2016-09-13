@@ -1,0 +1,4 @@
+--code：
+----包parallel_programming_thread、parallel_programming_communication、parallel_programming_synchronization为《Java并行程序设计》笔记配套代码；
+----work类为调用类，每段代码上方为相关类，下方为该段代码功能及使用的方法。
+--doc：《Java并行程序设计》笔记。
