@@ -1,7 +1,5 @@
 package parallel_programming_communication;
 
-import java.util.Random;
-
 /**
  * @author lucio.yz E-mail:lucio.yang@qq.com 
  * @date 2016年9月13日 下午11:39:47
